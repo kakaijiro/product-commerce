@@ -6,6 +6,7 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
+  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
@@ -33,8 +34,13 @@ const Menu = () => {
           <SheetTrigger className="align-middle">
             <EllipsisVertical />
           </SheetTrigger>
-          <SheetContent className="flex flex-col items-start">
-            <SheetTitle>Menu</SheetTitle>
+          <SheetContent
+            className="flex flex-col items-start w-[300px]"
+            side="right"
+          >
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+            </SheetHeader>
             <ModeToggle />
             <Button asChild variant="ghost">
               <Link href="/cart">
