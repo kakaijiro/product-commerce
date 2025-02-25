@@ -10,12 +10,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import CredentialsSignInForm from "./credentials-signin-form";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign In",
 };
 
-const SignInPage = () => {
+const SignInPage = async (props: {
+  searchParams: Promise<{
+    callbackUrl: string;
+  }>;
+}) => {
+  const session = await auth(); // SSC's way to get a session
+  const { callbackUrl } = await props.searchParams;
+
+  if (session) return redirect(callbackUrl || "/"); // if logged-in, user can not access SignInPage
+
   return (
     <div className="w-full max-w-md mx-auto">
       <Card>
