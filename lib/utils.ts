@@ -44,3 +44,15 @@ export function formatError(error: any) {
       : JSON.stringify(error.message);
   }
 }
+
+// round number to 2 decimal places
+export function round2(value: number | string) {
+  if (typeof value === "number") {
+    return Math.round((value + Number.EPSILON) * 100) / 100;
+    // Number.EPSILON is a tiny number that hleps to avoid rounding errors that are couased by how computers handle a floating point math.
+  } else if (typeof value === "string") {
+    return Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+  } else {
+    throw new Error("Value is not a number or stirng");
+  }
+}
